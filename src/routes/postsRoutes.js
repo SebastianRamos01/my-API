@@ -1,7 +1,11 @@
 const express = require("express")
 const router = express.Router()
-const productControllers = require("../controllers/postsControllers")
+const postsControllers = require("../controllers/postsControllers")
 
-router.get("/posts", productControllers)
+router.get("/posts", postsControllers.allPosts)
+router.get("/posts/:id", postsControllers.postById)
+router.post("/new-post", postsControllers.insertPost)
+router.put("/posts/:id", postsControllers.updatePost)
+router.delete("/posts/:id", postsControllers.deletePost)
 
 module.exports = router
