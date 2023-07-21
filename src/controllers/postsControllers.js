@@ -4,6 +4,7 @@ const postControllers = {
     allPosts: (req, res) => {
         db.Posts.findAll()
             .then((post) => {
+                res.status(200)
                 res.json({
                     totalPosts: post.length,
                     posts: post
@@ -18,7 +19,13 @@ const postControllers = {
         const {id} = req.params
         db.Posts.findByPk(id)
             .then((post) => {
-                res.json(post)
+                if (!post) {
+                    res.status(404)
+                    res.json("Not Found")
+                }else{
+                    res.status(200)
+                    res.json(post)
+                }
             })
             .catch(error => {
                 res.status(500)
@@ -28,7 +35,6 @@ const postControllers = {
     insertPost: (req, res) => {
 
         const { title, body, author, featured } = req.body
-        console.log(title)
         db.Posts.create({
             title,
             body,
@@ -36,7 +42,13 @@ const postControllers = {
             featured
         })
             .then(() => {
-                res.json("post-added")
+                if ( !title || !body || !author) {
+                    res.status(400)
+                    res.json("parameters-needed")
+                }else{
+                    res.status(200)
+                    res.json("post-added")
+                }
             })
             .catch(error => {
                 res.status(500)
@@ -58,6 +70,7 @@ const postControllers = {
             where: {id: id}
         })
             .then(() => {
+                res.status(200)
                 res.json("post-updated")
             })
             .catch(error => {
@@ -70,6 +83,7 @@ const postControllers = {
         const {id} = req.params
         db.Posts.destroy({where: {id: id}})
             .then(() => {
+                res.status(200)
                 res.json("post-deleted")
             })
             .catch(error => {
