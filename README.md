@@ -37,7 +37,7 @@ Crear un post
 Una solicitud exitosa para crear un post devolverá una respuesta HTTP 201 con el siguiente mensaje:
 
 {
-  "post-added"
+  message: "post-added"
 }
 
 Leer un post
@@ -54,14 +54,14 @@ Actualizar un post
 Una solicitud exitosa para actualizar un post devolverá una respuesta HTTP 200 con el siguiente mensaje:
 
 {
-  "post-updated"
+  message: "post-updated"
 }
 
 Eliminar un post
 Una solicitud exitosa para eliminar un post devolverá una respuesta HTTP 204 con el siguiente mensaje:
 
 {
-  "post-deleted"
+  message: "post-deleted"
 }
 Errores
 
@@ -70,7 +70,7 @@ Si la solicitud no es válida, la API devolverá una respuesta HTTP 400 con un c
 Por ejemplo, si intentas crear un post sin especificar el título, la API devolverá la siguiente respuesta:
 
 {
-  "parameters-needed"
+  message: "parameters-needed"
 }
 
 Conclusión

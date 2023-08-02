@@ -21,7 +21,7 @@ const postControllers = {
             .then((post) => {
                 if (!post) {
                     res.status(404)
-                    res.json("Not Found")
+                    res.json({ message: "Not Found" })
                 }else{
                     res.status(200)
                     res.json(post)
@@ -44,10 +44,10 @@ const postControllers = {
             .then(() => {
                 if ( !title || !body || !author) {
                     res.status(400)
-                    res.json("parameters-needed")
+                    res.json({ message: "parameters-needed" })
                 }else{
                     res.status(200)
-                    res.json("post-added")
+                    res.json({message: "post-added"})
                 }
             })
             .catch(error => {
@@ -71,7 +71,7 @@ const postControllers = {
         })
             .then(() => {
                 res.status(200)
-                res.json("post-updated")
+                res.json({ message: "post-updated" })
             })
             .catch(error => {
                 res.status(500)
@@ -84,7 +84,7 @@ const postControllers = {
         db.Posts.destroy({where: {id: id}})
             .then(() => {
                 res.status(200)
-                res.json("post-deleted")
+                res.json({ message: "post-deleted" })
             })
             .catch(error => {
                 res.status(500)
