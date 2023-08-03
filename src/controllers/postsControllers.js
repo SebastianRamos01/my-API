@@ -5,10 +5,7 @@ const postControllers = {
         db.Posts.findAll()
             .then((post) => {
                 res.status(200)
-                res.json({
-                    totalPosts: post.length,
-                    posts: post
-                })
+                res.json(post)
             })
             .catch(error => {
                 console.log(error)
